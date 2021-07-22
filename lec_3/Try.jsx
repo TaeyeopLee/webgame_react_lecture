@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Try = (tryInfo) => {
+  const info = tryInfo.tryInfo;
   return (
     <li>
-      <div>{tryInfo.try}</div>
-      <div>{tryInfo.result}</div>
+      <div>{info.try}</div>
+      <div>{info.result}</div>
     </li>
   )
 }
