@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const Try = (tryInfo) => {
   const info = tryInfo.tryInfo;
@@ -10,4 +10,4 @@ const Try = (tryInfo) => {
   )
 }
 
-export default Try;
+export default memo(Try);

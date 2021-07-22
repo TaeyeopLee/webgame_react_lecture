@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo, PureComponent } from "react";
 import Try from "./Try";
 
 function getNumbers() {
@@ -159,4 +159,4 @@ const NumberBaseball = () => {
 //   }
 // }
 
-export default NumberBaseball;
+export default memo(NumberBaseball);
