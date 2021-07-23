@@ -30,7 +30,7 @@ const RSP = () => {
     return () => { // componentWillUnmount
       clearInterval(interval.current);
     }
-  }, [imgCoord])
+  }, [imgCoord]) // -> useEffect를 다시 실행할 값만 넣어야 함.
   
   const changeHand = () => {
     if (imgCoord === rspCoords.바위) {
