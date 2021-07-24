@@ -1,6 +1,6 @@
-import React, { Component, useEffect, useState, useRef } from 'react';
+import React, { Component, useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import Ball from './Ball';
-
+// useMemo는 값, useCallback은 함수
 function getWinNumbers() {
   console.log('getwinNumbers');
   const candidate = Array(45).fill().map((v, i) => i + 1);
@@ -14,11 +14,29 @@ function getWinNumbers() {
 }
 
 const Lotto = () => {
-  const [winNumbers, setWinNumbers] = useState(getWinNumbers());
+  // hooks는 실행순서가 매우매우 중요.
+  const lottoNumbers = useMemo(() => getWinNumbers(), []);
+  const [winNumbers, setWinNumbers] = useState(lottoNumbers);
   const [winBalls, setwinBalls] = useState([]);
   const [bonus, setBonus] = useState(null);
   const [redo, setRedo] = useState(false);
   const timeouts = useRef([]);
+
+  // 패턴 ? ---------------------
+  useEffect(() => {
+    // ajax
+  }, []);
+
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    }
+    else {
+      // ajax
+    }
+  }, [/** 바뀌는 값 */]);
+  // -----------------------------
 
   useEffect(() => {
     for (let ii = 0; ii < winNumbers.length - 1; ii++) {
@@ -53,13 +71,13 @@ const Lotto = () => {
     }, 7000);
   }
   
-  const onClickRedo = () => {
+  const onClickRedo = useCallback(() => {
     setWinNumbers(getWinNumbers());
     setwinBalls([]);
     setBonus(null);
     setRedo(false);
     timeouts.current = [];
-  }
+  }, [winNumbers]) // winNumbers가 바뀌면 onClickRedo를 새로 기억함.
 
   return (
       <>
@@ -68,11 +86,12 @@ const Lotto = () => {
           {winBalls.map((v) => <Ball key={v} number={v} />)}
         </div>
         <div>보너스!</div>
-        {bonus && <Ball number={bonus} />}
+        {bonus && <Ball number={bonus} onClick={onClickRedo} />}{/**자식 컴포넌트에 함수를 넘길때 useCallback 사용해야 함. */}
         {redo && <button onClick={onClickRedo}>한 번 더 !</button>}
       </>
   )
 }
+
 // class Lotto extends Component {
 //   state = {
 //     winNumbers: getWinNumbers(), // 당첨 숫자들
