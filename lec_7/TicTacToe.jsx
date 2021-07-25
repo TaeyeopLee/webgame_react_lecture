@@ -20,6 +20,9 @@ const reducer = (state, action) => {
       return {
         ...state,// 기존 스테이트를 얕은 복사.
         winner: action.winner, // 바뀔 부분만 바꿔줌.
+        turn: 'O',
+        tableData: [['','',''],['','',''],['','','']],
+        recentCell: [-1, -1],
       }
     case CLICK_CELL:
       const tableData = [...state.tableData];
@@ -93,7 +96,7 @@ const TicTacToe = () => {
         dispatch({ type: CHANGE_TURN });
       }
     }
-  }, [recentCell])
+  }, [recentCell]);
 
   const onClickTable = useCallback(() => {
     dispatch({ type: 'SET_WINNER', winner: 'O'});

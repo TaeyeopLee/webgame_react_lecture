@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Td from './Td';
 
 const Tr = ({ rowData, rowIndex, dispatch }) => {
@@ -9,4 +9,4 @@ const Tr = ({ rowData, rowIndex, dispatch }) => {
   )
 }
 
-export default Tr;
+export default memo(Tr);
