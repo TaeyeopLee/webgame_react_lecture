@@ -1,14 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  name: "react-router-setting",
-  mode: "development",
+  name: 'react-router-setting',
+  mode: 'development',
   devtool: 'eval',
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   entry: {
-    app: ['./client.jsx']
+    app: ['./client.jsx'],
   },
   module: {
     rules: [{
@@ -38,6 +38,6 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     publicPath: '/dist/',
-    hot: true
-  }
+    hot: true,
+  },
 };
