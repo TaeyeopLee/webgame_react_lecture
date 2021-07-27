@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
-import NumberBaseball from '../lec_3/NumberBaseball';
-import RSP from '../lec_5/RSP';
-import Lotto from '../lec_6/lotto';
+import React, { Component } from 'react';
+import NumberBaseball from '../lec_3/NumberBaseballClass';
+import RSP from '../lec_5/RSPClass';
+import Lotto from '../lec_6/lottoClass';
 
-class GameMatcher extends PureComponent {
+class GameMatcher extends Component {
   render() {
     if (this.props.match.params.name === 'number-baseball') {
       return <NumberBaseball />;
